@@ -1,7 +1,7 @@
 /*
    Copyright (c) 2015, The Linux Foundation. All rights reserved.
    Copyright (C) 2016 The CyanogenMod Project.
-   Copyright (C) 2019 The LineageOS Project.
+   Copyright (C) 2019-2020 The LineageOS Project.
    Redistribution and use in source and binary forms, with or without
    modification, are permitted provided that the following conditions are
    met:
@@ -29,6 +29,7 @@
 
 #include <fstream>
 #include <unistd.h>
+#include <vector>
 
 #include <android-base/properties.h>
 #define _REALLY_INCLUDE_SYS__SYSTEM_PROPERTIES_H_
@@ -40,23 +41,35 @@
 using android::base::GetProperty;
 using android::init::property_set;
 
-void property_override(char const prop[], char const value[])
+std::vector<std::string> ro_props_default_source_order = {
+    "",
+    "odm.",
+    "product.",
+    "system.",
+    "vendor.",
+};
+
+void property_override(char const prop[], char const value[], bool add = true)
 {
     prop_info *pi;
-    pi = (prop_info*) __system_property_find(prop);
+
+    pi = (prop_info *)__system_property_find(prop);
     if (pi)
         __system_property_update(pi, value, strlen(value));
-    else
+    else if (add)
         __system_property_add(prop, strlen(prop), value, strlen(value));
-}
-void property_override_dual(char const system_prop[],
-    char const vendor_prop[], char const value[])
-{
-    property_override(system_prop, value);
-    property_override(vendor_prop, value);
 }
 
 void vendor_load_properties() {
+    const auto set_ro_build_prop = [](const std::string &source,
+            const std::string &prop, const std::string &value) {
+        auto prop_name = "ro." + source + "build." + prop;
+        property_override(prop_name.c_str(), value.c_str(), false);
+    };
+
+    for (const auto &source : ro_props_default_source_order)
+    {
+        set_ro_build_prop(source, "fingerprint", "Xiaomi/dipper/dipper:10/QKQ1.190828.002/V11.0.1.0.QEAMIXM:user/release-keys");
+    }
     property_override("ro.build.description", "dipper-user 10 QKQ1.190828.002 V11.0.1.0.QEAMIXM release-keys");
-    property_override_dual("ro.build.fingerprint", "ro.vendor.build.fingerprint", "Xiaomi/dipper/dipper:10/QKQ1.190828.002/V11.0.1.0.QEAMIXM:user/release-keys");
 }
