@@ -69,7 +69,7 @@ void vendor_load_properties() {
 
     for (const auto &source : ro_props_default_source_order)
     {
-        set_ro_build_prop(source, "fingerprint", "google/walleye/walleye:8.1.0/OPM1.171019.011/4448085:user/release-keys");
+        set_ro_build_prop(source, "fingerprint", "Xiaomi/dipper/dipper:10/QKQ1.190828.002/V11.0.1.0.QEAMIXM:user/release-keys");
     }
     property_override("ro.build.description", "dipper-user 10 QKQ1.190828.002 V11.0.1.0.QEAMIXM release-keys");
 }
