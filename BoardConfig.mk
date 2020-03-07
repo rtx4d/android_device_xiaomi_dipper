@@ -17,10 +17,6 @@ TARGET_OTA_ASSERT_DEVICE := dipper
 # Display
 TARGET_SCREEN_DENSITY := 440
 
-# Init
-TARGET_INIT_VENDOR_LIB := libinit_dipper
-TARGET_RECOVERY_DEVICE_MODULES := libinit_dipper
-
 # Kernel
 TARGET_KERNEL_CONFIG := dipper_defconfig
 
