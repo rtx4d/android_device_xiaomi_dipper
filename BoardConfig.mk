@@ -20,7 +20,7 @@ TARGET_USES_COLOR_METADATA := true
 TARGET_USES_DRM_PP := true
 
 # Kernel
-TARGET_KERNEL_CONFIG := dipper_defconfig
+TARGET_KERNEL_CONFIG := ../dipper_defconfig
 
 # HIDL
 DEVICE_MANIFEST_FILE += $(DEVICE_PATH)/manifest.xml
