@@ -16,8 +16,6 @@ TARGET_OTA_ASSERT_DEVICE := dipper
 
 # Display
 TARGET_SCREEN_DENSITY := 440
-TARGET_USES_COLOR_METADATA := true
-TARGET_USES_DRM_PP := true
 
 # Kernel
 TARGET_KERNEL_CONFIG := ../dipper_defconfig
