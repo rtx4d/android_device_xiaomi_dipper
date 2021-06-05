@@ -17,17 +17,6 @@ $(call inherit-product-if-exists, vendor/xiaomi/dipper/dipper-vendor.mk)
 TARGET_SCREEN_HEIGHT := 2248
 TARGET_SCREEN_WIDTH := 1080
 
-# Overlays
-DEVICE_PACKAGE_OVERLAYS += \
-    $(LOCAL_PATH)/overlay \
-    $(LOCAL_PATH)/overlay-pa
-
-PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += \
-    $(LOCAL_PATH)/overlay-lineage/lineage-sdk
-
-PRODUCT_PACKAGES += \
-    NoCutoutOverlay
-
 # Permissions
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.nfc.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.nfc.xml \
@@ -104,6 +93,12 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/nfc/libnfc-nci.conf:$(TARGET_COPY_OUT_PRODUCT)/etc/libnfc-nci.conf \
     $(LOCAL_PATH)/nfc/libnfc-nxp_RF.conf:$(TARGET_COPY_OUT_VENDOR)/libnfc-nxp_RF.conf \
     $(LOCAL_PATH)/nfc/libnfc-nxp.conf:$(TARGET_COPY_OUT_VENDOR)/etc/libnfc-nxp.conf
+
+# Overlays
+PRODUCT_PACKAGES += \
+    AOSPADipperFrameworks \
+    DipperFrameworks \
+    NoCutoutOverlay
 
 # PocketMode
 PRODUCT_PACKAGES += \
