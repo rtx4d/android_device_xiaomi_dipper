@@ -81,6 +81,7 @@ TARGET_COMMON_QTI_COMPONENTS += \
 PRODUCT_PACKAGES += \
     AOSPADipperFrameworks \
     DipperFrameworks \
+    DipperSystemUI \
     NoCutoutOverlay
 
 # Secure element
